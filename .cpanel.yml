@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/vipgrupa/dada.vip-grupa.eu/
+    - /bin/cp index.html $DEPLOYPATH

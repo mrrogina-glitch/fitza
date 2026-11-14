@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#d6336c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Fitža">
+<meta name="format-detection" content="telephone=no">
+<title>Fitža – vježbanje i prehrana za žene (demo)</title>
+<style>
+:root{--p:#d6336c;--p2:#fff0f6;--g:#2f9e77;--ink:#2b2433;--mut:#7a7185;--bg:#faf7fb;--card:#fff;--line:#eee6f0}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#e9e1ee;color:var(--ink);min-height:100vh;display:flex;justify-content:center}
+#app{width:100%;max-width:440px;min-height:100vh;background:var(--bg);position:relative;padding-bottom:76px}
+h1{font-size:26px}h2{font-size:20px;margin-bottom:10px}h3{font-size:16px}
+.pad{padding:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.btn{background:var(--p);color:#fff;border:0;border-radius:12px;padding:12px 16px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
+.btn.sec{background:var(--p2);color:var(--p)}
+.btn.sm{width:auto;padding:8px 12px;font-size:13px}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:#fff}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.hero{background:linear-gradient(135deg,#d6336c,#9c36b5);color:#fff;padding:26px 18px;border-radius:0 0 26px 26px}
+.hero p{opacity:.9;margin-top:4px;font-size:14px}
+nav{position:fixed;bottom:0;width:100%;max-width:440px;display:flex;background:#fff;border-top:1px solid var(--line)}
+nav button{flex:1;border:0;background:none;padding:10px 0 8px;font-size:11px;color:var(--mut);cursor:pointer}
+nav button span{display:block;font-size:20px}
+nav button.on{color:var(--p);font-weight:700}
+.chips{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-size:13px;white-space:nowrap;cursor:pointer}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+.ring{width:150px;height:150px;border-radius:50%;margin:6px auto;display:grid;place-items:center}
+.ring div{width:116px;height:116px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center}
+.ring b{font-size:26px}.mut{color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{font-size:20px;display:block}
+.tag{display:inline-block;background:var(--p2);color:var(--p);border-radius:6px;padding:2px 8px;font-size:11px;margin-right:4px}
+.tag.g{background:#e6fcf5;color:var(--g)}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--p)}
+.sub{cursor:pointer}
+ol,ul{padding-left:20px;margin:6px 0}li{margin:5px 0;font-size:14px}
+.timer{font-size:44px;font-weight:700;text-align:center;margin:10px 0;color:var(--p)}
+.hide{display:none}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#2b2433;color:#fff;padding:10px 16px;border-radius:99px;font-size:13px;z-index:9}
+.spark{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:8px}
+body{background:linear-gradient(160deg,#f3d9ea,#d9d4f5 60%,#cfe8f3);font-family:'Segoe UI',system-ui,sans-serif}
+#app{box-shadow:0 0 40px rgba(120,60,140,.18)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#ff6b9a,#c13584 55%,#7048e8)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero:before{width:180px;height:180px;right:-50px;top:-60px}.hero:after{width:110px;height:110px;right:50px;bottom:-60px}
+.hero>*{position:relative;z-index:1}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:54px;height:54px;background:#fff;border-radius:18px;padding:6px;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.card{box-shadow:0 4px 14px rgba(120,60,140,.07)}
+.btn{background:linear-gradient(135deg,#ff6b9a,#c13584);box-shadow:0 6px 14px rgba(193,53,132,.3)}
+.btn.sec{background:var(--p2);box-shadow:none;color:#c13584}
+.link{background:none;border:0;color:#7048e8;font-weight:600;font-size:15px;width:100%;padding:12px;cursor:pointer;text-decoration:underline}
+nav{border-radius:22px 22px 0 0;box-shadow:0 -6px 20px rgba(120,60,140,.1)}
+nav button.on span{background:var(--p2);border-radius:12px;width:44px;margin:0 auto 2px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:24px;float:right;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.spark i{flex:1;background:var(--p);border-radius:5px 5px 0 0;opacity:.85}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ---------- stanje ----------
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let mem={};
+let S=store.get('fitza')||mem.s||null;
+function save(){mem.s=S;store.set('fitza',S)}
+let tab='home',loc='Kod kuće',rcat='Sve',openRec=null,openWo=null,toast='';
+
+// ---------- podaci ----------
+const WORKOUTS={
+'Kod kuće':[
+ {id:'h1',n:'Cijelo tijelo bez opreme',min:25,kcal:180,lvl:'Početnica',ex:['Čučnjevi 3×15','Sklekovi na koljenima 3×10','Iskoraci 3×12 po nozi','Plank 3×30 s','Mostić za gluteuse 3×15']},
+ {id:'h2',n:'Core i trbušni mišići',min:15,kcal:110,lvl:'Srednja',ex:['Bicikl trbušnjaci 3×20','Mrtva buba 3×12','Bočni plank 3×25 s','Penjač 3×30 s']},
+ {id:'h3',n:'Joga za opuštanje',min:20,kcal:70,lvl:'Početnica',ex:['Mačka–krava 2 min','Pas licem prema dolje 1 min','Ratnica II 1 min po strani','Dijete 2 min','Savasana 5 min']}],
+'U teretani':[
+ {id:'g1',n:'Donji dio tijela i guzice',min:45,kcal:320,lvl:'Srednja',ex:['Hip thrust 4×10','Rumunjsko mrtvo dizanje 3×10','Bugarski čučanj 3×10','Leg press 3×12','Abdukcija na spravi 3×15']},
+ {id:'g2',n:'Gornji dio tijela',min:40,kcal:270,lvl:'Srednja',ex:['Potisak bučicama 3×10','Veslanje na kablu 3×12','Potisak iznad glave 3×10','Lat pulldown 3×12','Biceps/triceps superset 3×12']},
+ {id:'g3',n:'HIIT na traci',min:20,kcal:240,lvl:'Napredna',ex:['Zagrijavanje 3 min','30 s sprint / 60 s hod × 10','Hlađenje 3 min']}],
+'Na otvorenom':[
+ {id:'o1',n:'Brzo hodanje u prirodi',min:40,kcal:200,lvl:'Početnica',ex:['Lagano zagrijavanje 5 min','Brzi hod 30 min','Istezanje 5 min']},
+ {id:'o2',n:'Trčanje – intervali',min:30,kcal:300,lvl:'Srednja',ex:['Hod 5 min','1 min trk / 2 min hod × 6','Hlađenje 5 min']},
+ {id:'o3',n:'Park trening (klupe i stube)',min:30,kcal:260,lvl:'Srednja',ex:['Penjanje uz stube 4×1 min','Sklekovi o klupu 3×12','Step-up na klupu 3×12','Skokovi iz čučnja 3×10']}]
+};
+const RECIPES=[
+ {id:'r1',n:'Zobena kaša s bobičastim voćem',cat:'Doručak',min:10,kcal:340,p:14,s:4,
+  ing:[['zobene pahuljice',60,'g'],['mlijeko ili biljno mlijeko',200,'ml'],['borovnice',80,'g'],['čia sjemenke',1,'žlica'],['med',1,'žličica']],
+  steps:['Zobene pahuljice i mlijeko stavi u lonac na srednju vatru.','Kuhaj 5 minuta uz miješanje dok se ne zgusne.','Prebaci u zdjelu, dodaj borovnice i čia sjemenke.','Prelij medom i poslužuj toplo.'],
+  tip:'Vlakna iz zobi dugo drže sitost i stabiliziraju šećer u krvi.'},
+ {id:'r2',n:'Omlet sa špinatom i fetom',cat:'Doručak',min:12,kcal:310,p:22,s:2,
+  ing:[['jaja',3,'kom'],['svježi špinat',50,'g'],['feta sir',40,'g'],['maslinovo ulje',1,'žličica'],['sol i papar',1,'prstohvat']],
+  steps:['Jaja razmuti vilicom sa solju i paprom.','Na tavi zagrij ulje i kratko zapeci špinat dok ne uvene.','Prelij jajima i kuhaj poklopljeno 3–4 minute na niskoj vatri.','Posipaj izmrvljenom fetom, preklopi omlet i posluži.'],
+  tip:'Bjelančevine ujutro pomažu očuvanju mišićne mase.'},
+ {id:'r3',n:'Piletina s kvinojom i povrćem',cat:'Ručak',min:30,kcal:480,p:42,s:6,
+  ing:[['pileća prsa',150,'g'],['kvinoja',70,'g'],['brokula',120,'g'],['mrkva',1,'kom'],['maslinovo ulje',1,'žlica'],['češnjak',1,'režanj'],['limun',0.5,'kom']],
+  steps:['Kvinoju isperi i kuhaj u dvostrukoj količini vode 15 minuta.','Piletinu nareži na kockice i začini solju, paprom i češnjakom.','Na tavi u ulju peci piletinu 6–7 minuta dok ne porumeni.','Dodaj brokulu i mrkvu narezanu na štapiće, kuhaj još 6 minuta.','Pomiješaj s kvinojom i iscijedi limun po vrhu.'],
+  tip:'Kompletan obrok nakon treninga: bjelančevine + složeni ugljikohidrati.'},
+ {id:'r4',n:'Salata s tunjevinom i slanutkom',cat:'Ručak',min:10,kcal:390,p:30,s:7,
+  ing:[['tunjevina u vlastitom soku',1,'konzerva'],['slanutak iz konzerve',100,'g'],['rajčica',2,'kom'],['krastavac',1,'kom'],['crveni luk',0.25,'kom'],['maslinovo ulje',1,'žlica'],['limunov sok',1,'žlica']],
+  steps:['Ocijedi tunjevinu i slanutak.','Povrće operi i nareži na kockice.','Sve pomiješaj u zdjeli.','Prelij uljem i limunom, posoli i odmah posluži.'],
+  tip:'Dobar izvor željeza i omega-3 masnih kiselina.'},
+ {id:'r5',n:'Losos s pečenim batatom',cat:'Večera',min:35,kcal:520,p:36,s:5,
+  ing:[['fileta lososa',150,'g'],['batat',200,'g'],['šparoge',100,'g'],['maslinovo ulje',1,'žlica'],['limun',0.5,'kom'],['kopar',1,'žlica']],
+  steps:['Zagrij pećnicu na 200 °C.','Batat nareži na kriške, premaži uljem i peci 15 minuta.','Dodaj lososa i šparoge, začini solju, paprom i koprom.','Peci još 12–15 minuta dok losos nije kuhan.','Posluži uz limun.'],
+  tip:'Omega-3 masti podržavaju oporavak mišića i smanjuju upale.'},
+ {id:'r6',n:'Juha od leće s povrćem',cat:'Večera',min:40,kcal:350,p:20,s:12,
+  ing:[['crvena leća',100,'g'],['mrkva',1,'kom'],['luk',1,'kom'],['rajčica pasirana',100,'g'],['kurkuma',1,'žličica'],['povrtni temeljac',500,'ml']],
+  steps:['Luk i mrkvu sitno nasjeckaj i kratko prodinstaj na ulju.','Dodaj kurkumu i leću, promiješaj.','Ulij temeljac i pasiranu rajčicu.','Kuhaj 25 minuta dok leća ne bude mekana.','Po želji štapnim mikserom usitni dio juhe.'],
+  tip:'Bogata željezom i vlaknima – ideja za dane s manje energije.'},
+ {id:'r7',n:'Smoothie od banane i špinata',cat:'Međuobrok',min:5,kcal:230,p:12,s:5,
+  ing:[['banana',1,'kom'],['svježi špinat',40,'g'],['grčki jogurt',150,'g'],['bademovo mlijeko',100,'ml'],['laneno sjeme',1,'žličica']],
+  steps:['Sve sastojke stavi u blender.','Miksaj 1 minutu do glatke teksture.','Ulij u čašu i popij odmah.'],
+  tip:'Idealno 30–60 minuta prije treninga.'},
+ {id:'r8',n:'Proteinske kuglice od datulja',cat:'Međuobrok',min:15,kcal:140,p:6,s:3,
+  ing:[['datulje bez koštica',8,'kom'],['bademi',40,'g'],['kakao prah',1,'žlica'],['zobene pahuljice',30,'g'],['kokos prah',2,'žlica']],
+  steps:['Datulje potopi u toplu vodu 5 minuta pa ocijedi.','Sve osim kokosa usitni u multipraktiku u ljepljivu smjesu.','Oblikuj kuglice veličine oraha.','Uvaljaj u kokos i ohladi 20 minuta.'],
+  tip:'Zdrava zamjena za slatkiš, drži se 5 dana u hladnjaku.'}
+];
+const TIPS={
+'🍑 Guzice':['Hip thrust je najučinkovitija vježba – drži vrh pokreta 1–2 s i stisni guzice.','Trenira 2–3 puta tjedno uz dan odmora između.','Postupno povećavaj težinu ili broj ponavljanja svaka 1–2 tjedna.','Koristi elastične trake za aktivaciju prije čučnjeva.','Dodaj bugarski čučanj i iskorake za oblik i ravnotežu.'],
+'🦵 Noge':['Čučanj: koljena prate smjer prstiju, težina na petama, leđa ravna.','Kombiniraj prednju (čučanj, iskorak) i stražnju ložu (rumunjsko mrtvo dizanje).','Spusti se barem do paralele s podom, ako zglobovi dopuštaju.','Hodanje uzbrdo i stepenice odlična su kardio varijanta za noge.','Nakon treninga istegni kvadriceps i stražnju ložu 30 s po strani.'],
+'🔥 Trbuh i core':['Plank 3×30 s vrijedi više od stotinu trbušnjaka – drži trbuh uvučen i kukove u liniji.','Izbjegavaj vući vrat rukama pri trbušnjacima.','Vidljivi trbušnjaci ovise i o prehrani, ne samo o treningu.','Uključi bočni plank i mrtvu bubu za dubinske mišiće.','Core treniraj 2–3 puta tjedno, ne svaki dan.','Diši ravnomjerno, izdah pri naporu.'],
+'🧍 Leđa i držanje':['Veslanje i lat pulldown jačaju leđa i popravljaju držanje.','Povuci lopatice natrag i dolje prije svakog povlačenja.','Nakon sjedenja radi mačka–krava i otvaranje prsa.','Superman na podu jača donji dio leđa bez opreme.','Ako osjetiš bol u slabinama, smanji težinu i javi se fizioterapeutu.'],
+'💪 Ruke':['Biceps i triceps dobivaju dio posla u vježbama za leđa i prsa, ne treniraj ih previše.','Tricepsi čine većinu opsega nadlaktice – dodaj dips na klupi ili potisak užetom.','Kontrolirano spuštanje utega (2–3 s) gradi više snage od brzog pokreta.','Lagane bučice 2–5 kg dovoljne su za početak.'],
+'🏋️ Ramena i prsa':['Potisak bučicama iznad glave oblikuje ramena i drži ih stabilnima.','Bočno podizanje s laganim utezima za "okrugla" ramena.','Sklekovi na koljenima ili o klupu odlična su početna verzija.','Ramena drži dolje od ušiju, ne ukoči vrat.','Zagrij ramena kružnim pokretima prije svakog treninga.'],
+'⚡ Cijelo tijelo':['Za početak treniraj cijelo tijelo 3 puta tjedno.','Raspored: snaga 2–3 puta, kardio 2 puta, jedan dan potpunog odmora.','Spavaj 7–9 sati – mišići rastu u oporavku.','Uzmi bjelančevine u svakom obroku (jaja, piletina, riba, grčki jogurt, mahunarke).','Pij vodu: oko 0,033 L po kilogramu tjelesne težine dnevno.']
+};
+const TECH={
+'Čučnjevi':'Stopala u širini ramena. Guraj kukove natrag kao da sjedaš na stolicu, koljena prate prste, leđa ravna. Ustani guranjem kroz pete.',
+'Sklekovi na koljenima':'Dlanovi ispod ramena, tijelo ravna linija od koljena do glave. Spusti prsa prema podu s laktovima ~45° od tijela, pa se odgurni.',
+'Iskoraci':'Veliki korak naprijed, spusti oba koljena na ~90°. Prednje koljeno iznad gležnja, trup uspravan. Odgurni se prednjom petom.',
+'Plank':'Podlaktice ispod ramena. Stisni guzice i trbuh, kukovi u liniji s ramenima, ne spuštaj slabine. Diši ravnomjerno.',
+'Mostić za gluteuse':'Leđa na podu, koljena savijena, stopala blizu guzica. Podigni kukove stišćući guzice, zadrži 1–2 s, spusti polako.',
+'Bicikl trbušnjaci':'Ruke uz sljepoočnice, ne vuci vrat. Naizmjence približi lakat suprotnom koljenu uz rotaciju trupa, polako i kontrolirano.',
+'Mrtva buba':'Leđa na podu, ruke i koljena u zraku. Spuštaj suprotnu ruku i nogu, a slabine drži priljubljene uz pod.',
+'Bočni plank':'Lakat ispod ramena, noge skupljene. Podigni kukove u ravnu liniju, ne propadaj prema podu. Menjaj stranu.',
+'Penjač':'Početni položaj u skleku, ramena iznad dlanova. Naizmjence povlači koljena prema prsima, kukovi ostaju nisko.',
+'Mačka–krava':'Na sve četiri. Udahom spusti trbuh i podigni pogled, izdahom zaobli leđa i spusti glavu. Polagani pokreti.',
+'Pas licem prema dolje':'Kukove podigni prema stropu, ruke i leđa dugi. Koljena smiju biti blago savijena, pete teže prema podu.',
+'Ratnica II':'Široki raskorak, prednje koljeno iznad gležnja. Ruke u širinu, ramena opuštena, pogled preko prednje ruke.',
+'Dijete':'Sjedni na pete, čelo na pod, ruke ispružene naprijed. Diši duboko u leđa i opusti vrat.',
+'Savasana':'Legni na leđa, dlanovi okrenuti prema gore. Zatvori oči, opusti sve mišiće i prati disanje.',
+'Hip thrust':'Gornji dio leđa na klupi, šipka/uteg na kukovima. Podigni kukove stišćući guzice, brada blago prema prsima, zadrži 1 s na vrhu.',
+'Rumunjsko mrtvo dizanje':'Koljena blago savijena, leđa ravna. Guraj kukove natrag i spusti uteg niz noge do osjeta istezanja straga u nogama, pa se vrati stišćući guzice.',
+'Bugarski čučanj':'Stražnje stopalo na klupi, prednje dovoljno daleko naprijed. Spuštaj se okomito dok prednje bedro nije paralelno s podom.',
+'Leg press':'Stopala u širini ramena na sredini ploče, leđa priljubljena. Ne zaključavaj koljena na vrhu pokreta.',
+'Abdukcija na spravi':'Sjedni uspravno, gurni koljena van kontrolirano, 1 s zadrži, polako vrati. Bez zamaha.',
+'Potisak bučicama':'Leđa na klupi, lopatice skupljene. Spusti bučice do visine prsa, laktovi ~45°, potisni prema gore bez zaključavanja laktova.',
+'Veslanje na kablu':'Sjedni uspravno, povuci ručku k trbuhu skupljajući lopatice. Laktovi uz tijelo, ne ljuljaj trup.',
+'Potisak iznad glave':'Stoj ili sjedi, trbuh stisnut. Potisni bučice iznad glave bez ugibanja leđa, spusti do visine brade.',
+'Lat pulldown':'Hvat malo širi od ramena. Povuci šipku do gornjeg dijela prsa, laktovi dolje i natrag, ne naginji se previše.',
+'Biceps/triceps superset':'Biceps: laktovi uz tijelo, savij bez zamaha. Odmah zatim triceps: ispruži laktove iznad glave ili povlači uže dolje. Spuštanja 2–3 s.',
+'Zagrijavanje':'Lagan tempo, postupno podižući brzinu. Ramena opuštena, ruke se slobodno njišu.',
+'30 s sprint':'Sprint jačinom ~8/10 zatim aktivni oporavak hodom. Spuštaj brzinu ako gubiš tehniku. Ne hvataj se za ručke trake.',
+'Hlađenje':'Polako smanji tempo i diši duboko dok puls ne padne. Završi laganim istezanjem.',
+'Lagano zagrijavanje':'Hodaj laganim tempom i kruži ramenima, kukovima i gležnjevima.',
+'Brzi hod':'Uspravno držanje, pogled naprijed, ruke savijene u laktovima i aktivno se njišu. Tempo na kojem još možeš pričati, ali ne pjevati.',
+'Istezanje':'Svaki položaj drži 20–30 s, bez poskakivanja. Istegni listove, prednju i stražnju ložu, kukove.',
+'Hod':'Lagan hod za zagrijavanje, ramena opuštena.',
+'1 min trk':'Trči lakim tempom, kratki koraci, doskok na srednji dio stopala. Hodanje između je aktivan odmor.',
+'Penjanje uz stube':'Cijelim stopalom na stepenicu, guraj kroz petu. Uspravan trup, koristi rukohvat samo za ravnotežu.',
+'Sklekovi o klupu':'Dlanovi na klupi ili ogradi, tijelo ravna linija. Spusti prsa prema klupi i odgurni se.',
+'Step-up':'Cijelo stopalo na klupi, guraj kroz petu prednje noge i ustani. Spusti se polako, ne odguruj se stražnjom nogom.',
+'Skokovi iz čučnja':'Spusti se u čučanj, eksplozivno skoči, doskoči meko na prste pa petu uz savijena koljena.'
+};
+function tech(e){const k=Object.keys(TECH).sort((a,b)=>b.length-a.length).find(x=>e.startsWith(x));return k?TECH[k]:''}
+const WB={h1:[1,6],h2:[2],h3:[3,6],g1:[0,1],g2:[3,4,5],g3:[1,6],o1:[1,6],o2:[1,6],o3:[1,5,0]};
+function goTips(i){tipCat=Object.keys(TIPS)[i];tsub='tips';openWo=null;clearInterval(tInt);tSec=0;render()}
+let tsub='wo',tipCat='🍑 Guzice';
+const MOTIV=['Svaki korak se računa 💪','Danas si jača nego jučer.','Disanje je i trening – udahni duboko.','Napredak, ne savršenstvo.'];
+
+// ---------- pomoćno ----------
+const $=s=>document.querySelector(s);
+const today=()=>new Date().toISOString().slice(0,10);
+function rnd(a,b){return Math.round(a+Math.random()*(b-a))}
+function day(){if(!S.days)S.days={};if(!S.days[today()])S.days[today()]={steps:0,stress:null,log:[],kcal:0};return S.days[today()]}
+function bmi(){const h=S.h/100;return (S.w/(h*h)).toFixed(1)}
+function goalSteps(){return S.goal==='Gubitak kilograma'?10000:S.goal==='Opuštanje / stres'?7000:8000}
+function notify(m){toast=m;render();setTimeout(()=>{toast='';render()},1800)}
+function waterGoal(){return Math.round(S.w*0.033*10)/10}
+
+// ---------- ekrani ----------
+function auth(){
+ if(typeof socialScreen==='function'&&socP)return socialScreen();
+ return `<div class="hero"><div class="logo"><svg viewBox="0 0 64 64"><g fill="#ff6b9a"><ellipse cx="32" cy="16" rx="8" ry="13"/><ellipse cx="32" cy="16" rx="8" ry="13" transform="rotate(72 32 32)"/><ellipse cx="32" cy="16" rx="8" ry="13" transform="rotate(144 32 32)"/><ellipse cx="32" cy="16" rx="8" ry="13" transform="rotate(216 32 32)"/><ellipse cx="32" cy="16" rx="8" ry="13" transform="rotate(288 32 32)"/></g><circle cx="32" cy="32" r="8" fill="#7048e8"/></svg><h1>Fitža</h1></div><p style="margin-top:12px">Vježbaj kod kuće, u teretani ili u prirodi. Jedi pametno. Prati napredak.</p></div>
+ <div class="pad"><button class="btn" onclick="skip()">✨ Isprobaj odmah – preskoči registraciju</button>${typeof socialBtns==='function'?socialBtns():''}
+ <p class="mut" style="text-align:center;margin:12px 0 4px">ili se registriraj</p><h2>Registracija</h2>
+ <label>Ime</label><input id="ime" placeholder="npr. Ana">
+ <label>E-mail</label><input id="mail" type="email" placeholder="ana@primjer.hr">
+ <label>Lozinka</label><input id="pass" type="password" placeholder="min. 6 znakova">
+ <div class="row"><div><label>Dob</label><input id="dob" type="number" value="30"></div><div><label>Visina (cm)</label><input id="vis" type="number" value="168"></div><div><label>Težina (kg)</label><input id="tez" type="number" value="65"></div></div>
+ <label>Cilj</label><select id="cilj"><option value="Gubitak kilograma">Gubitak kilograma</option><option value="Jačanje i tonus">Jačanje i tonus</option><option value="Opuštanje / stres">Opuštanje / stres</option><option value="Kondicija">Kondicija</option></select>
+ <label>Razina aktivnosti</label><select id="lvl"><option value="Početnica">Početnica</option><option value="Srednja">Srednja</option><option value="Napredna">Napredna</option></select>
+ <label>Kod pozivnice (neobavezno)</label><input id="ref" placeholder="npr. ANA-1234">
+ <label>Gdje najradije vježbaš?</label><select id="gdje"><option value="Kod kuće">Kod kuće</option><option value="U teretani">U teretani</option><option value="Na otvorenom">Na otvorenom</option></select>
+ <p class="mut" id="err" style="margin:10px 0;color:#c92a2a"></p>
+ <button class="btn" onclick="register()">Kreiraj račun</button>
+ <p class="mut" style="margin-top:12px;text-align:center">Demo: podaci se spremaju samo u tvom pregledniku.</p></div>`;
+}
+function register(){
+ const v=id=>$('#'+id).value.trim();
+ if(!v('ime')||!/\S+@\S+\.\S+/.test(v('mail'))){$('#err').textContent='Upiši ime i ispravan e-mail.';return}
+ if(v('pass').length<6){$('#err').textContent='Lozinka mora imati barem 6 znakova.';return}
+ S={name:v('ime'),mail:v('mail'),age:+v('dob'),h:+v('vis'),w:+v('tez'),goal:v('cilj'),lvl:v('lvl'),pref:v('gdje'),days:{},sync:null,hist:[]};
+ loc=S.pref;
+ // povijest zadnjih 6 dana (demo)
+ for(let i=6;i>=1;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);S.days[d]={steps:rnd(3500,11000),stress:rnd(25,75),log:[],kcal:rnd(0,300)}}
+ save();render();
+}
+function skip(){
+ S={name:'Gošća',mail:'demo@fitza.app',age:30,h:168,w:65,goal:'Jačanje i tonus',lvl:'Početnica',pref:'Kod kuće',days:{},sync:null,hist:[],demo:true};
+ loc=S.pref;
+ for(let i=6;i>=1;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);S.days[d]={steps:rnd(3500,11000),stress:rnd(25,75),log:[],kcal:rnd(0,300)}}
+ sync('Mobitel');
+}
+function sync(src){
+ const d=day();
+ d.steps=Math.min(d.steps+rnd(1800,3600),25000);
+ d.stress=rnd(22,78);
+ S.sync={src,t:new Date().toLocaleTimeString('hr',{hour:'2-digit',minute:'2-digit'}),hr:rnd(62,84)};
+ save();notify('Sinkronizirano: '+src);
+}
+function home(){
+ const d=day(),g=goalSteps(),pct=Math.min(100,Math.round(d.steps/g*100));
+ const st=d.stress, stTxt=st==null?'—':st<35?'Nizak 😌':st<60?'Umjeren 🙂':'Visok 😟';
+ const hist=Object.keys(S.days).sort().slice(-7);
+ const mx=Math.max(...hist.map(k=>S.days[k].steps),1);
+ return `<div class="hero"><div class="avatar">🌸</div><h1>Bok, ${S.name}!</h1><p>${MOTIV[new Date().getDate()%MOTIV.length]}</p></div>
+ <div class="pad">
+ <div class="card" style="text-align:center"><div class="ring" style="background:conic-gradient(var(--p) ${pct*3.6}deg,var(--line) 0)"><div><b>${d.steps.toLocaleString('hr')}</b><span class="mut">od ${g.toLocaleString('hr')} koraka</span></div></div>
+  <p class="mut">${pct}% dnevnog cilja</p></div>
+ <div class="grid">
+  <div class="stat"><span class="mut">Razina stresa</span><b>${st==null?'—':st+'/100'}</b><span class="mut">${stTxt}</span></div>
+  <div class="stat"><span class="mut">Potrošeno (trening)</span><b>${d.kcal} kcal</b><span class="mut">${d.log.length} treninga danas</span></div>
+  <div class="stat"><span class="mut">Puls u mirovanju</span><b>${S.sync?S.sync.hr+' bpm':'—'}</b><span class="mut">${S.sync?S.sync.src+' · '+S.sync.t:'nije sinkronizirano'}</span></div>
+  <div class="stat"><span class="mut">Voda (cilj)</span><b>${waterGoal()} L</b><span class="mut">KMI ${bmi()}</span></div>
+ </div>
+ <div class="card" style="margin-top:12px"><h3>Sinkronizacija uređaja</h3><p class="mut" style="margin:4px 0 10px">Povuci korake, puls i stres s mobitela ili pametnog sata (demo simulacija).</p>
+  <div class="row"><button class="btn sec sm" onclick="sync('Mobitel')">📱 Mobitel</button><button class="btn sec sm" onclick="sync('Pametni sat')">⌚ Sat</button></div></div>
+ <div class="card"><h3>Koraci – zadnjih 7 dana</h3><div class="spark">${hist.map(k=>`<i style="height:${Math.max(6,S.days[k].steps/mx*100)}%" title="${k}"></i>`).join('')}</div></div>
+ ${d.stress>=60?`<div class="card" style="background:#fff9db"><b>Visok stres.</b> Probaj 20 min joge za opuštanje.<button class="btn sm" style="margin-top:8px" onclick="tab='train';loc='Kod kuće';openWo='h3';render()">Otvori trening</button></div>`:''}
+ <div class="card"><h3>Danas na tanjuru</h3><p class="mut" style="margin:4px 0 8px">Preporuka: ${RECIPES[new Date().getDate()%RECIPES.length].n}</p><button class="btn sec sm" onclick="tab='food';openRec='${RECIPES[new Date().getDate()%RECIPES.length].id}';render()">Pogledaj recept</button></div>
+ </div>`;
+}
+function find(id){for(const k in WORKOUTS){const w=WORKOUTS[k].find(x=>x.id===id);if(w)return w}}
+let tInt=null,tSec=0;
+function startTimer(){clearInterval(tInt);tInt=setInterval(()=>{tSec++;const t=$('#tm');if(t)t.textContent=fmt(tSec)},1000)}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function finish(id){
+ clearInterval(tInt);const w=find(id),d=day();
+ d.log.push({id,n:w.n,t:fmt(tSec)});d.kcal+=w.kcal;d.steps+=Math.round(w.min*70);
+ tSec=0;openWo=null;save();notify('Trening spremljen! 🎉');
+}
+function train(){
+ if(openWo){const w=find(openWo);
+  return `<div class="pad"><button class="btn sec sm" onclick="clearInterval(tInt);tSec=0;openWo=null;render()">← Natrag</button>
+  <h2 style="margin-top:12px">${w.n}</h2><span class="tag">${w.lvl}</span><span class="tag g">${w.min} min</span><span class="tag g">~${w.kcal} kcal</span>
+  <div class="card" style="margin-top:12px"><h3>Vježbe</h3><p class="mut">Dodirni vježbu za tehniku izvođenja.</p><ol>${w.ex.map(e=>`<li><details><summary style="cursor:pointer"><b>${e}</b></summary><p class="mut" style="margin:6px 0 4px;color:#4a4255">${tech(e)}</p></details></li>`).join('')}</ol></div>
+  <div class="card"><h3>Savjeti za ovaj trening</h3><div style="margin-top:8px">${(WB[w.id]||[]).map(i=>`<span class="chip" style="display:inline-block;margin:0 6px 6px 0" onclick="goTips(${i})">${Object.keys(TIPS)[i]}</span>`).join('')}</div></div>
+  <div class="timer" id="tm">${fmt(tSec)}</div>
+  <div class="row"><button class="btn sec" onclick="startTimer()">▶ Start</button><button class="btn" onclick="finish('${w.id}')">✔ Završi</button></div></div>`}
+ const d=day();
+ const sw=`<div class="chips"><div class="chip ${tsub==='wo'?'on':''}" onclick="tsub='wo';render()">Treninzi</div><div class="chip ${tsub==='tips'?'on':''}" onclick="tsub='tips';render()">Savjeti po tijelu</div></div>`;
+ if(tsub==='tips')return `<div class="pad"><h2>Savjeti za vježbanje</h2>${sw}
+ <div class="chips">${Object.keys(TIPS).map(k=>`<div class="chip ${k===tipCat?'on':''}" onclick="tipCat='${k}';render()">${k}</div>`).join('')}</div>
+ <div class="card"><h3>${tipCat}</h3><ul>${TIPS[tipCat].map(t=>`<li>${t}</li>`).join('')}</ul></div></div>`;
+ return `<div class="pad"><h2>Treninzi</h2>${sw}
+ <div class="chips">${Object.keys(WORKOUTS).map(k=>`<div class="chip ${k===loc?'on':''}" onclick="loc='${k}';render()">${{'Kod kuće':'🏠','U teretani':'🏋️','Na otvorenom':'🌳'}[k]} ${k}</div>`).join('')}</div>
+ ${WORKOUTS[loc].map(w=>`<div class="card sub" onclick="openWo='${w.id}';render()"><h3>${w.n}</h3><div style="margin-top:6px"><span class="tag">${w.lvl}</span><span class="tag g">${w.min} min</span><span class="tag g">~${w.kcal} kcal</span></div></div>`).join('')}
+ ${d.log.length?`<h3 style="margin:14px 0 8px">Danas odrađeno</h3>${d.log.map(l=>`<div class="card">✅ ${l.n} <span class="mut">· ${l.t}</span></div>`).join('')}`:''}</div>`;
+}
+let scale=1;
+function food(){
+ if(openRec){const r=RECIPES.find(x=>x.id===openRec),f=scale;
+  const fx=n=>{const v=n*f;return Number.isInteger(v)?v:v.toFixed(1).replace('.',',')};
+  return `<div class="pad"><button class="btn sec sm" onclick="openRec=null;scale=1;render()">← Recepti</button>
+  <h2 style="margin-top:12px">${r.n}</h2><span class="tag">${r.cat}</span><span class="tag g">${r.min} min</span>
+  <div class="grid" style="margin:12px 0"><div class="stat"><b>${Math.round(r.kcal*f)}</b><span class="mut">kcal</span></div><div class="stat"><b>${Math.round(r.p*f)} g</b><span class="mut">bjelančevine</span></div></div>
+  <div class="card"><div class="row" style="align-items:center"><h3>Sastojci</h3><div style="text-align:right"><button class="btn sec sm" onclick="scale=Math.max(1,scale-1);render()">−</button> <b>${f} ${f===1?'porcija':'por.'}</b> <button class="btn sec sm" onclick="scale=Math.min(6,scale+1);render()">+</button></div></div>
+  <ul>${r.ing.map(i=>`<li><b>${fx(i[1])} ${i[2]}</b> ${i[0]}</li>`).join('')}</ul></div>
+  <div class="card"><h3>Priprema</h3><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+  <div class="card" style="background:#e6fcf5"><b>💡 Savjet:</b> ${r.tip}</div></div>`}
+ const cats=['Sve','Doručak','Ručak','Večera','Međuobrok'];
+ return `<div class="pad"><h2>Recepti 🥗</h2>
+ <div class="chips">${cats.map(c=>`<div class="chip ${c===rcat?'on':''}" onclick="rcat='${c}';render()">${c}</div>`).join('')}</div>
+ ${RECIPES.filter(r=>rcat==='Sve'||r.cat===rcat).map(r=>`<div class="card sub" onclick="openRec='${r.id}';scale=1;render()"><h3>${r.n}</h3><div style="margin-top:6px"><span class="tag">${r.cat}</span><span class="tag g">${r.min} min</span><span class="tag g">${r.kcal} kcal</span><span class="tag g">${r.p} g bjel.</span></div></div>`).join('')}</div>`;
+}
+const FREQ={daily:['Svaki dan',[0,1,2,3,4,5,6],1.55],every2:['Svaki drugi dan',[0,2,4,6],1.45],every3:['Svaki treći dan',[0,3,6],1.375],twice:['2× tjedno',[1,4],1.3]};
+const DAYS=['Ponedjeljak','Utorak','Srijeda','Četvrtak','Petak','Subota','Nedjelja'];
+function target(f){
+ const bmr=10*S.w+6.25*S.h-5*S.age-161;let k=bmr*FREQ[f][2];
+ if(S.goal==='Gubitak kilograma')k-=400;else if(S.goal==='Jačanje i tonus')k+=150;
+ return Math.round(k/50)*50;
+}
+function mk(cat,i){const l=RECIPES.filter(r=>r.cat===cat);return l[i%l.length]}
+function plan(){
+ if(!S.plan)S.plan={f:'every2',p:S.pref};
+ const f=S.plan.f,p=S.plan.p,tr=FREQ[f][1],pool=WORKOUTS[p];let wi=0,tot=0;
+ const rows=DAYS.map((dn,i)=>{
+  const t=tr.includes(i);let w=null;if(t){w=pool[wi%pool.length];wi++}
+  const meals=[['🌅 Doručak',mk('Doručak',i)],['☀️ Ručak',mk('Ručak',i)],['🍎 Međuobrok',t?RECIPES.find(r=>r.id==='r7'):RECIPES.find(r=>r.id==='r8')],['🌙 Večera',mk('Večera',i)]];
+  const kc=meals.reduce((a,m)=>a+m[1].kcal,0);
+  return `<details class="card" ${i===0?'open':''}><summary style="cursor:pointer;display:flex;justify-content:space-between"><b>${dn}</b><span class="tag ${t?'':'g'}">${t?'💪 Trening':'😴 Odmor'}</span></summary>
+  <div style="margin-top:10px">${t?`<div class="card sub" style="background:var(--p2);margin-bottom:8px" onclick="loc='${p}';openWo='${w.id}';tab='train';tsub='wo';render()"><b>${w.n}</b><br><span class="mut">${w.min} min · ~${w.kcal} kcal – dodirni za početak</span></div>`:`<p class="mut" style="margin-bottom:8px">Aktivni odmor: 20–30 min laganog hoda i 10 min istezanja.</p>`}
+  ${meals.map(m=>`<div class="sub" style="padding:6px 0;border-top:1px solid var(--line)" onclick="tab='food';openRec='${m[1].id}';scale=1;render()"><span class="mut">${m[0]}</span><br><b style="font-size:14px">${m[1].n}</b> <span class="mut">· ${m[1].kcal} kcal</span></div>`).join('')}
+  <p class="mut" style="margin-top:6px">Ukupno recepti: ${kc} kcal</p></div></details>`}).join('');
+ return `<div class="pad"><h2>Tjedni plan 📅</h2>
+ <label style="margin-top:0">Koliko često želiš vježbati?</label>
+ <div class="chips">${Object.keys(FREQ).map(k=>`<div class="chip ${k===f?'on':''}" onclick="S.plan.f='${k}';save();render()">${FREQ[k][0]}</div>`).join('')}</div>
+ <label style="margin-top:0">Gdje?</label>
+ <div class="chips">${Object.keys(WORKOUTS).map(k=>`<div class="chip ${k===p?'on':''}" onclick="S.plan.p='${k}';save();render()">${k}</div>`).join('')}</div>
+ <div class="grid" style="margin:4px 0 12px"><div class="stat"><b>${tr.length}</b><span class="mut">treninga tjedno</span></div><div class="stat"><b>~${target(f)}</b><span class="mut">kcal dnevno (cilj: ${S.goal})</span></div></div>
+ <p class="mut" style="margin-bottom:10px">Plan se računa iz tvojih podataka. Recepti čine glavninu dana – dopuni porcijama povrća, voća i vodom (${waterGoal()} L). Procjena je okvirna.</p>
+ ${rows}</div>`;
+}
+function profile(){
+ return `<div class="pad"><h2>Profil</h2>
+ <div class="card"><h3>${S.name}</h3><p class="mut">${S.demo?'Demo način – registracija preskočena':S.mail}</p>${S.demo?`<button class="btn sm" style="margin-top:10px" onclick="S=null;render()">Registriraj se</button>`:''}</div>
+ <div class="grid"><div class="stat"><span class="mut">Dob</span><b>${S.age}</b></div><div class="stat"><span class="mut">Visina</span><b>${S.h} cm</b></div>
+ <div class="stat"><span class="mut">Težina</span><b>${S.w} kg</b></div><div class="stat"><span class="mut">KMI</span><b>${bmi()}</b></div></div>
+ <div class="card" style="margin-top:12px"><span class="mut">Cilj</span><br><b>${S.goal}</b><br><span class="mut" style="display:block;margin-top:8px">Razina / omiljeno mjesto</span><b>${S.lvl} · ${S.pref}</b></div>
+ <div class="card"><h3>Povezani uređaji</h3><p class="mut">Mobitel (Apple Zdravlje / Google Fit) i pametni sat – u punoj verziji aplikacije, ovdje simulacija.</p></div>
+ <button class="btn sec" onclick="if(window.__c){S=null;mem={};store.set('fitza',null);tab='home';render()}else{window.__c=1;notify('Dodirni opet za odjavu i brisanje')}">Odjava i brisanje podataka</button></div>`;
+}
+function render(){
+ const el=$('#app');
+ if(!S){el.innerHTML=auth()+(toast?`<div class="toast">${toast}</div>`:'');return}
+ const body={home,plan,train,food,profile}[tab]();
+ const nav=[['home','🏠','Početna'],['plan','📅','Plan'],['train','💪','Trening'],['food','🥗','Recepti'],['profile','👤','Profil']];
+ el.innerHTML=body+`<nav>${nav.map(n=>`<button class="${tab===n[0]?'on':''}" onclick="tab='${n[0]}';openRec=null;openWo=null;window.__c=0;render();scrollTo(0,0)"><span>${n[1]}</span>${n[2]}</button>`).join('')}</nav>`+(toast?`<div class="toast">${toast}</div>`:'');
+}
+render();
+</script>
+</body>
+</html>
