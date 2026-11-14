@@ -217,7 +217,7 @@ function register(){
  save();render();
 }
 function skip(){
- S={name:'Gošća',mail:'demo@fitza.app',age:30,h:168,w:65,goal:'Jačanje i tonus',lvl:'Početnica',pref:'Kod kuće',days:{},sync:null,hist:[],demo:true};
+ S={name:'Gošća',mail:'demo@fitza.app',age:30,h:168,w:65,goal:'Jačanje i tonus',lvl:'Početnica',pref:'Kod kuće',days:{},sync:null,hist:[],demo:true,onb:0};
  loc=S.pref;
  for(let i=6;i>=1;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);S.days[d]={steps:rnd(3500,11000),stress:rnd(25,75),log:[],kcal:rnd(0,300)}}
  sync('Mobitel');

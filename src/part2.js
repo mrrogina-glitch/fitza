@@ -85,14 +85,15 @@ function render(){
  if(!ST.legal){el.innerHTML=consent();post();return}
  if(!S){el.innerHTML=auth()+(toast?`<div class="toast">${toast}</div>`:'');post();return}
  ensureData();
- const pages={home,plan,train,food,profile,prog,more,diary,spec,relax,chal,comm,shop,sync:syncPage,premium,settings,legal,inbox:inboxPage,invite:invitePage,ttips:tipsPage};
+ if(S.onb===0&&typeof onbScreen==='function'){el.innerHTML=onbScreen()+(toast?`<div class="toast">${toast}</div>`:'');post();return}
+ const pages={home,plan,train,food,profile,prog,more,diary,spec,relax,chal,comm,shop,sync:syncPage,premium,settings,legal,inbox:inboxPage,invite:invitePage,ttips:tipsPage,lib:libPage,rem:remPage};
  const hi={home:'home',train:'train',food:'food',prog:'prog'}[tab]||'more';
  const nav=[['home','🏠','Početna'],['train','💪','Trening'],['food','🥗','Recepti'],['prog','📈','Napredak'],['more','☰','Više']];
  el.innerHTML=pages[tab]()+`<nav>${nav.map(n=>`<button class="${hi===n[0]?'on':''}" onclick="tab='${n[0]}';openRec=null;openWo=null;window.__c=0;render();scrollTo(0,0)"><span>${n[1]}</span>${n[2]}</button>`).join('')}</nav>`+(toast?`<div class="toast">${toast}</div>`:'');
  post();
 }
 function more(){
- const T=[['plan','📅','Tjedni plan','Trening i prehrana'],['diary','📓','Dnevnik','Obroci, voda, san, raspoloženje'],['spec','🌸','Posebni programi','Trudnoća, menopauza, leđa, ciklus'],['relax','🧘','Opuštanje','Zagrijavanje, istezanje, disanje'],['chal','🏆','Izazovi i značke','30 dana'],['comm','👭','Zajednica','Prijateljice i stručnjakinje'],['shop','🛒','Popis za kupnju','Iz tjednog plana'],['sync','⌚','Sinkronizacija','Mobitel i pametni sat'],['premium','⭐','Premium','Planovi i cijene'],['settings','⚙️','Postavke','Jezik, tema, pristupačnost'],['legal','⚕️','Pravne napomene','Upozorenja i privatnost'],['invite','💌','Pozovi prijateljice','Podijeli aplikaciju'],['inbox','📧','Pošta','Mail dobrodošlice'],['profile','👤','Profil','Podaci i odjava'],['ttips','⏰','Savjeti za trening','Kada trenirati i jesti']];
+ const T=[['plan','📅','Tjedni plan','Trening i prehrana'],['diary','📓','Dnevnik','Obroci, voda, san, raspoloženje'],['spec','🌸','Posebni programi','Trudnoća, menopauza, leđa, ciklus'],['relax','🧘','Opuštanje','Zagrijavanje, istezanje, disanje'],['chal','🏆','Izazovi i značke','30 dana'],['comm','👭','Zajednica','Prijateljice i stručnjakinje'],['shop','🛒','Popis za kupnju','Iz tjednog plana'],['sync','⌚','Sinkronizacija','Mobitel i pametni sat'],['premium','⭐','Premium','Planovi i cijene'],['settings','⚙️','Postavke','Jezik, tema, pristupačnost'],['legal','⚕️','Pravne napomene','Upozorenja i privatnost'],['invite','💌','Pozovi prijateljice','Podijeli aplikaciju'],['inbox','📧','Pošta','Mail dobrodošlice'],['profile','👤','Profil','Podaci i odjava'],['ttips','⏰','Savjeti za trening','Kada trenirati i jesti'],['lib','📚','Biblioteka vježbi','240+ vježbi s filtrima'],['rem','🔔','Podsjetnici','Obavijest, kalendar, serija']];
  return `<div class="pad"><h2>Više</h2>${premBanner()}<div class="grid">${T.map(t=>`<div class="stat sub" onclick="tab='${t[0]}';render();scrollTo(0,0)"><span style="font-size:26px">${t[1]}</span><b style="font-size:15px">${t[2]}</b><span class="mut">${t[3]}</span></div>`).join('')}</div></div>`;
 }
 
@@ -131,7 +132,7 @@ function train(){
   <div class="timer" id="tm">${fmt(tSec)}</div>
   <div class="row"><button class="btn sec" onclick="startTimer()">▶ Start</button><button class="btn" onclick="finish('${w.id}')">✔ Završi</button></div></div>`}
  const d=day();
- const sw=`<div class="chips"><div class="chip ${tsub==='wo'?'on':''}" onclick="tsub='wo';render()">Treninzi</div><div class="chip ${tsub==='tips'?'on':''}" onclick="tsub='tips';render()">Savjeti po tijelu</div><div class="chip" onclick="tab='ttips';render();scrollTo(0,0)">⏰ Kada trenirati i jesti</div></div>`;
+ const sw=`<div class="chips"><div class="chip ${tsub==='wo'?'on':''}" onclick="tsub='wo';render()">Treninzi</div><div class="chip ${tsub==='tips'?'on':''}" onclick="tsub='tips';render()">Savjeti po tijelu</div><div class="chip" onclick="tab='lib';render();scrollTo(0,0)">📚 Biblioteka vježbi</div><div class="chip" onclick="tab='ttips';render();scrollTo(0,0)">⏰ Kada trenirati i jesti</div></div>`;
  if(tsub==='tips')return `<div class="pad"><h2>Savjeti za vježbanje</h2>${sw}
  <div class="chips">${Object.keys(TIPS).map(k=>`<div class="chip ${k===tipCat?'on':''}" onclick="tipCat='${k}';render()">${k}</div>`).join('')}</div>
  <div class="card"><h3>${tipCat}</h3><ul>${TIPS[tipCat].map(t=>`<li>${t}</li>`).join('')}</ul></div></div>`;
@@ -202,7 +203,7 @@ function recipe(){
 // ---------- PLAN + POPIS ZA KUPNJU ----------
 function buildWeek(){
  if(!S.plan)S.plan={f:'every2',p:S.pref};
- const f=S.plan.f,p=S.plan.p,tr=FREQ[f][1],pool=WORKOUTS[p];let wi=0;
+ const f=S.plan.f,p=S.plan.p,tr=FREQ[f][1],pool=planPool(p);let wi=0;
  return DAYS.map((dn,i)=>{const t=tr.includes(i);let w=null;if(t){w=pool[wi%pool.length];wi++}
   return {dn,t,w,meals:[['🌅 Doručak',mk('Doručak',i)],['☀️ Ručak',mk('Ručak',i)],['🍎 Međuobrok',t&&dietMode()==='Klasičan'?RECIPES.find(r=>r.id==='r7'):mk('Međuobrok',i+1)],['🌙 Večera',mk('Večera',i)]]}});
 }

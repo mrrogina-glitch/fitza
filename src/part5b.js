@@ -32,7 +32,7 @@ function register(){
 }
 const PREM_MAILS=['dada.kukolja@gmail.com'];
 function makeAccount(o){
- S={name:o.name,mail:o.mail,age:o.age,h:o.h,w:o.w,goal:o.goal,lvl:o.lvl,pref:o.pref,days:{},sync:null,hist:[],provider:o.provider||'email',refBy:(o.ref||ST.ref||'').toUpperCase()};
+ S={name:o.name,mail:o.mail,age:o.age,h:o.h,w:o.w,goal:o.goal,lvl:o.lvl,pref:o.pref,days:{},sync:null,hist:[],onb:0,provider:o.provider||'email',refBy:(o.ref||ST.ref||'').toUpperCase()};
  loc=S.pref;
  for(let i=6;i>=1;i--){const k=d0(i);S.days[k]={steps:rnd(3500,11000),stress:rnd(25,75),log:[],kcal:rnd(0,300)}}
  if(PREM_MAILS.indexOf((o.mail||'').trim().toLowerCase())>-1){S.prem=true;S.premGift=true}
