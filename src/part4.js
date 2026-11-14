@@ -1,8 +1,9 @@
 
 /* ===================== DIO 4: JEZIK, TEMA, PRISTUPAČNOST, PREMIUM, PRAVNE NAPOMENE, TEŽINA ===================== */
-let ST=store.get('fitza_set')||{lang:'hr',theme:'auto',fs:0,hc:0,rm:null,legal:0};
+function _defLang(){try{const n=String((navigator.languages&&navigator.languages[0])||navigator.language||'en');return /^(hr|bs|sr)/i.test(n)?'hr':'en'}catch(e){return 'en'}}
+let ST=store.get('fitza_set')||{lang:_defLang(),theme:'auto',fs:0,hc:0,rm:null,legal:0};
 function stSave(){store.set('fitza_set',ST)}
-const L=(hr,en)=>ST.lang==='en'?en:hr;
+const L=(hr,en)=>ST.lang==='hr'?hr:en;
 document.head.insertAdjacentHTML('beforeend','<style>*:focus-visible{outline:3px solid #7048e8!important;outline-offset:2px}body.fs1 .pad,body.fs1 .hero{zoom:1.12}body.fs2 .pad,body.fs2 .hero{zoom:1.25}body.rm *{transition:none!important;animation:none!important}body.hc{--ink:#000;--mut:#222;--line:#555}body.hc .btn{border:2px solid #000}body.dark{--bg:#17131c;--card:#231c2b;--ink:#f1ecf5;--mut:#b0a7bd;--line:#3d3348;--p2:#3b2234;background:#0e0b12}body.dark.hc{--ink:#fff;--mut:#e6e0ee;--line:#bbb}body.dark .stat,body.dark .dy:not(.ok),body.dark nav,body.dark input,body.dark select,body.dark textarea{background:var(--card);color:var(--ink);border-color:var(--line)}body.dark .chip:not(.on){background:var(--card);color:var(--ink);border-color:var(--line)}body.dark .ring div{background:var(--card)}body.dark .anim{background:#2a1f2f}body.dark .msg.pro{background:#3d3348}body.dark nav button{color:var(--mut)}body.dark nav button.on{color:#ff6b9a}body.dark .btn.sec{color:#ff8fb8}body.dark [style*="background:#fff9db"],body.dark [style*="background:#e6fcf5"]{color:#2b2433}body.dark [style*="background:#fff9db"] .mut,body.dark [style*="background:#e6fcf5"] .mut{color:#5a5066}body.dark .tag{color:#ff8fb8}.lock{border:2px dashed var(--line)}.premcard{background:linear-gradient(135deg,#fff3bf,#ffd8e8);color:#2b2433}.premcard .mut{color:#5a5066}</style>');
 function isDark(){return ST.theme==='dark'||(ST.theme==='auto'&&typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches)}
 function rmOn(){return ST.rm==null?(typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches):!!ST.rm}
@@ -338,14 +339,15 @@ const EXACT={};PAIRS.forEach(p=>{EXACT[p[0].trim()]=p[1].trim()});
 const PHR=PAIRS.filter(p=>p[0].length>=5).sort((a,b)=>b[0].length-a[0].length);
 PHR.unshift(['Bok, ','Hi, ']);
 function T(s){
- if(ST.lang!=='en'||!s)return s;
+ if(ST.lang==='hr'||!s)return s;
  const m=/^(\s*)([\s\S]*?)(\s*)$/.exec(s),core=m[2];
- if(EXACT[core]!=null)return m[1]+EXACT[core]+m[3];
- let r=s;for(const p of PHR){if(r.indexOf(p[0])>=0)r=r.split(p[0]).join(p[1])}
- return r;
+ let en=EXACT[core]!=null?EXACT[core]:null,r=s;
+ if(en==null){for(const p of PHR){if(r.indexOf(p[0])>=0)r=r.split(p[0]).join(p[1])}en=r.trim()}
+ if(ST.lang!=='en'){const d=typeof EUX!=='undefined'&&EUX[ST.lang];if(d&&d[en]!=null)return m[1]+d[en]+m[3]}
+ return EXACT[core]!=null?m[1]+EXACT[core]+m[3]:r;
 }
 function xl(root){
- if(ST.lang!=='en'||!root||typeof document.createTreeWalker!=='function')return;
+ if(ST.lang==='hr'||!root||typeof document.createTreeWalker!=='function')return;
  const w=document.createTreeWalker(root,4),arr=[];let n;while((n=w.nextNode()))arr.push(n);
  arr.forEach(x=>{const v=x.nodeValue;if(v&&v.trim()){const r=T(v);if(r!==v)x.nodeValue=r}});
  root.querySelectorAll('[placeholder]').forEach(e=>{e.placeholder=T(e.placeholder)});
@@ -353,7 +355,7 @@ function xl(root){
 
 // ---------- post-render: tema, pristupačnost, napomena, prijevod ----------
 function discHtml(){return `<div class="pad" style="padding-top:0"><p class="mut" style="font-size:11px">⚕️ ${L('Fitža ne zamjenjuje liječnika, fizioterapeuta ni nutricionista. Prije vježbanja ili promjene prehrane posavjetuj se sa stručnom osobom.','Fitža does not replace a doctor, physiotherapist or nutritionist. Consult a professional before exercising or changing your diet.')} <a href="#" onclick="tab='legal';render();scrollTo(0,0);return false" style="color:var(--p)">${L('Više','More')}</a></p></div>`}
-function quickBar(){return `<div class="pad" style="padding-bottom:0"><div class="chips" style="margin:0"><div class="chip ${ST.lang==='hr'?'on':''}" onclick="setLang('hr')">🇭🇷 Hrvatski</div><div class="chip ${ST.lang==='en'?'on':''}" onclick="setLang('en')">🇬🇧 English</div><div class="chip ${isDark()?'on':''}" onclick="setTheme(isDark()?'light':'dark')">🌙 ${L('Tamni način','Dark mode')}</div></div></div>`}
+function quickBar(){return `<div class="pad" style="padding-bottom:0"><div class="chips" style="margin:0">${langSel()}<div class="chip ${isDark()?'on':''}" onclick="setTheme(isDark()?'light':'dark')">🌙 ${L('Tamni način','Dark mode')}</div></div></div>`}
 function post(){
  if(typeof document.body==='undefined'||!document.body||!document.body.classList)return;
  const b=document.body;
@@ -377,7 +379,7 @@ function togHc(){ST.hc=ST.hc?0:1;stSave();render()}
 function setRm(v){ST.rm=v;stSave();render()}
 
 // ---------- pravne napomene ----------
-function legalItems(){return ST.lang==='en'?[
+function legalItems(){return ST.lang!=='hr'?[
  'Fitža is an informational app for recreation and a healthy lifestyle. It does not replace a doctor, physiotherapist, nutritionist or any other health professional.',
  'Before starting to exercise or changing your diet, consult your doctor – especially if you have a chronic illness, heart disease, diabetes, pain or injuries, are pregnant or breastfeeding, or are recovering after childbirth.',
  'Keto and LCHF diets are not suitable for everyone (pregnancy, breastfeeding, diabetes treated with medication, liver or kidney disease, eating disorders).',
@@ -410,7 +412,7 @@ function legal(){return `<div class="pad">${back}<h2 style="margin-top:12px">⚕
 function settings(){
  const ch=(on,fn,label)=>`<div class="chip ${on?'on':''}" onclick="${fn}">${label}</div>`;
  return `<div class="pad">${back}<h2 style="margin-top:12px">⚙️ ${L('Postavke','Settings')}</h2>
- <div class="card"><h3>🌐 ${L('Jezik','Language')}</h3><div class="chips" style="margin-top:8px">${ch(ST.lang==='hr',"setLang('hr')",'🇭🇷 Hrvatski')}${ch(ST.lang==='en',"setLang('en')",'🇬🇧 English')}</div><p class="mut" style="font-size:12px">${L('Većina izbornika i naziva je prevedena; dulji opisi (upute, koraci recepata, programi) za sada ostaju na hrvatskom.','Most menus and names are translated; longer texts (instructions, recipe steps, programs) remain in Croatian for now.')}</p></div>
+ <div class="card"><h3>🌐 ${L('Jezik','Language')}</h3><div class="chips" style="margin-top:8px">${langSel()}</div><p class="mut" style="font-size:12px">${L('Većina izbornika i naziva je prevedena; dulji opisi (upute, koraci recepata, programi) za sada ostaju na hrvatskom.','Most menus and names are translated; longer texts (instructions, recipe steps, programs) remain in Croatian for now.')}</p></div>
  <div class="card"><h3>🌙 ${L('Tema','Theme')}</h3><div class="chips" style="margin-top:8px">${ch(ST.theme==='light',"setTheme('light')",'☀️ '+L('Svijetla','Light'))}${ch(ST.theme==='dark',"setTheme('dark')",'🌙 '+L('Tamna','Dark'))}${ch(ST.theme==='auto',"setTheme('auto')",'📱 '+L('Prema uređaju','Follow device'))}</div></div>
  <div class="card"><h3>♿ ${L('Pristupačnost','Accessibility')}</h3>
  <label>${L('Veličina teksta','Text size')}</label><div class="chips">${ch(ST.fs===0,'setFs(0)',L('Normalna','Normal'))}${ch(ST.fs===1,'setFs(1)',L('Velika','Large'))}${ch(ST.fs===2,'setFs(2)',L('Vrlo velika','Extra large'))}</div>

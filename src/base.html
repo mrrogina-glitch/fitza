@@ -185,7 +185,7 @@ function rnd(a,b){return Math.round(a+Math.random()*(b-a))}
 function day(){if(!S.days)S.days={};if(!S.days[today()])S.days[today()]={steps:0,stress:null,log:[],kcal:0};return S.days[today()]}
 function bmi(){const h=S.h/100;return (S.w/(h*h)).toFixed(1)}
 function goalSteps(){return S.goal==='Gubitak kilograma'?10000:S.goal==='Opuštanje / stres'?7000:8000}
-function notify(m){toast=m;render();setTimeout(()=>{toast='';render()},1800)}
+function notify(m){toast=typeof T==='function'?T(m):m;render();setTimeout(()=>{toast='';render()},1800)}
 function waterGoal(){return Math.round(S.w*0.033*10)/10}
 
 // ---------- ekrani ----------

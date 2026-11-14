@@ -8,14 +8,14 @@ function myCode(){
 }
 function inviteBase(){return (S.inviteBase||'https://dada.vip-grupa.eu').replace(/\/+$/,'')}
 function inviteLink(){return inviteBase()+'/#poziv-'+myCode()}
-function inviteText(){return ST.lang==='en'
+function inviteText(){return ST.lang!=='hr'
  ?`Hi! I use Fitža – workouts at home, at the gym or outdoors, plus healthy recipes and progress tracking. Try it for free: ${inviteLink()} (invite code ${myCode()})`
  :`Bok! Koristim Fitžu – vježbanje kod kuće, u teretani ili u prirodi, uz zdrave recepte i praćenje napretka. Isprobaj besplatno: ${inviteLink()} (kod pozivnice ${myCode()})`}
 function setInviteBase(){const v=$('#ib').value.trim();if(!/^https?:\/\/[^\s]+$/.test(v)){notify(L('Upiši adresu koja počinje s https://','Enter an address starting with https://'));return}S.inviteBase=v;save();render()}
 function addInvite(){
  const n=$('#in').value.trim(),e=$('#ie').value.trim();
  if(!/\S+@\S+\.\S+/.test(e)){notify(L('Upiši ispravan e-mail','Enter a valid email'));return}
- S.invites=S.invites||[];S.invites.unshift({n:n||e,e,t:new Date().toLocaleDateString('hr')});S.invited=(S.invited||0)+1;save();notify(L('Pozivnica pripremljena','Invitation prepared'));
+ S.invites=S.invites||[];S.invites.unshift({n:n||e,e,t:new Date().toLocaleDateString(ST.lang==='hr'?'hr':'en-GB')});S.invited=(S.invited||0)+1;save();notify(L('Pozivnica pripremljena','Invitation prepared'));
 }
 function delInvite(i){S.invites.splice(i,1);save();render()}
 function enc(s){return encodeURIComponent(s)}

@@ -1,6 +1,6 @@
 import re,sys
 b=open('base.html',encoding='utf8').read()
-names=['part2.js','part3.js','part4.js','part5.js','part5b.js','part5c.js','part5d.js','part5e.js']+sys.argv[1:]
+names=['part2.js','part3.js','part4.js','part5.js','part5b.js','part5c.js','part5d.js','part5e.js','part6.js']+sys.argv[1:]
 parts=''.join(open(f,encoding='utf8').read().rstrip()+'\n' for f in names)+'render();\n'
 a='render();\n</script>\n</body>'
 assert b.count(a)==1
