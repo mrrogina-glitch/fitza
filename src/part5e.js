@@ -38,4 +38,4 @@ document.head.insertAdjacentHTML('beforeend','<style id="modern">'+
 '::selection{background:rgba(224,69,123,.25)}'+
 '@media(max-width:360px){nav button{font-size:9.5px}nav button span{font-size:19px}h1{font-size:24px}.hero h1{font-size:26px}}'+
 '</style>');
-(function(){try{if(S&&S.mail&&PREM_MAILS.indexOf(String(S.mail).trim().toLowerCase())>-1&&!S.prem){S.prem=true;S.premGift=true;save()}}catch(e){}})();
+(function(){try{if(S&&S.mail&&PREM_MAILS.indexOf(String(S.mail).trim().toLowerCase())>-1&&!S.prem&&!S.mailEdited){S.prem=true;S.premGift=true;save()}}catch(e){}})();

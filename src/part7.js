@@ -446,8 +446,10 @@ let pe=false;
 function profEdit(on){pe=on;render();scrollTo(0,0)}
 function profSave(){
  const g=id=>($('#'+id)||{value:''}).value,name=g('pe_n').trim(),age=+g('pe_a'),h=+g('pe_h'),w=+g('pe_w');
- const err=!name?L('Upiši ime','Enter your name'):!(age>=14&&age<=100)?L('Dob mora biti 14–100','Age must be 14–100'):!(h>=120&&h<=230)?L('Visina mora biti 120–230 cm','Height must be 120–230 cm'):!(w>=30&&w<=250)?L('Težina mora biti 30–250 kg','Weight must be 30–250 kg'):'';
+ const mail=g('pe_m').trim().toLowerCase(),mailOk=S.demo||/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail);
+ const err=!mailOk?L('Neispravna e-pošta','Invalid email'):!name?L('Upiši ime','Enter your name'):!(age>=14&&age<=100)?L('Dob mora biti 14–100','Age must be 14–100'):!(h>=120&&h<=230)?L('Visina mora biti 120–230 cm','Height must be 120–230 cm'):!(w>=30&&w<=250)?L('Težina mora biti 30–250 kg','Weight must be 30–250 kg'):'';
  if(err){notify(err);return}
+ if(!S.demo&&mail!==String(S.mail).toLowerCase()){S.mail=mail;S.mailEdited=1}
  S.name=name.slice(0,40);S.age=Math.round(age);S.h=Math.round(h);S.w=Math.round(w*10)/10;S.goal=g('pe_g');S.lvl=g('pe_l');S.pref=g('pe_p');
  if(S.plan){S.plan.p=S.pref}loc=S.pref;pe=false;save();render();notify(L('Podaci spremljeni ✓','Details saved ✓'))
 }
@@ -458,14 +460,14 @@ function profile(){
  const tail=`<div class="card"><h3>${L('Povezani uređaji','Connected devices')}</h3><p class="mut">${L('Mobitel (Apple Zdravlje / Google Fit) i pametni sat – u punoj verziji aplikacije, ovdje simulacija.','Phone (Apple Health / Google Fit) and smartwatch – in the full app, simulated here.')}</p></div>
  <button class="btn sec" onclick="if(window.__c){S=null;mem={};store.set('fitza',null);tab='home';render()}else{window.__c=1;notify(L('Dodirni opet za odjavu i brisanje','Tap again to sign out and delete data'))}">${L('Odjava i brisanje podataka','Sign out and delete data')}</button>`;
  if(pe)return `<div class="pad"><h2>${L('Uredi profil','Edit profile')}</h2>${head}
- <div class="card"><label>${L('Ime','Name')}</label><input id="pe_n" value="${(S.name||'').replace(/"/g,'&quot;')}" maxlength="40">
+ <div class="card">${S.demo?'':`<label>${L('E-pošta','Email')}</label><input id="pe_m" type="email" value="${(S.mail||'').replace(/"/g,'&quot;')}">`}<label>${L('Ime','Name')}</label><input id="pe_n" value="${(S.name||'').replace(/"/g,'&quot;')}" maxlength="40">
  <label>${L('Dob','Age')}</label><input id="pe_a" type="number" inputmode="numeric" value="${S.age}">
  <label>${L('Visina (cm)','Height (cm)')}</label><input id="pe_h" type="number" inputmode="numeric" value="${S.h}">
  <label>${L('Težina (kg)','Weight (kg)')}</label><input id="pe_w" type="number" inputmode="decimal" step="0.1" value="${S.w}">
  <label>${L('Cilj','Goal')}</label><select id="pe_g">${opt(Object.keys(gT),S.goal,gT)}</select>
  <label>${L('Razina','Level')}</label><select id="pe_l">${opt(Object.keys(lT),S.lvl,lT)}</select>
  <label>${L('Gdje najradije vježbaš?','Where do you prefer to train?')}</label><select id="pe_p">${opt(Object.keys(pT),S.pref,pT)}</select>
- <p class="mut" style="font-size:12px;margin-top:8px">${L('E-pošta se ne može mijenjati. Plan, kalorije i KMI preračunavaju se automatski.','Email cannot be changed. Plan, calories and BMI recalculate automatically.')}</p>
+ <p class="mut" style="font-size:12px;margin-top:8px">${L('Plan, kalorije i KMI preračunavaju se automatski.','Email cannot be changed. Plan, calories and BMI recalculate automatically.')}</p>
  <div class="row" style="margin-top:10px"><button class="btn" onclick="profSave()">💾 ${L('Spremi','Save')}</button><button class="btn sec" onclick="profEdit(false)">${L('Odustani','Cancel')}</button></div></div></div>`;
  return `<div class="pad"><h2>${L('Profil','Profile')}</h2>${head}<button class="btn sec" onclick="profEdit(true)">✏️ ${L('Uredi podatke','Edit details')}</button>
  <div class="grid" style="margin-top:12px"><div class="stat"><span class="mut">${L('Dob','Age')}</span><b>${S.age}</b></div><div class="stat"><span class="mut">${L('Visina','Height')}</span><b>${S.h} cm</b></div>
