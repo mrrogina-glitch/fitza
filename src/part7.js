@@ -44,20 +44,20 @@ Mostić za gluteuse|Glute bridge|gl|bw|1|bridge|3
 Mostić na jednoj nozi|Single-leg glute bridge|gl|bw|2|bridge|3
 Mostić s pauzom|Paused glute bridge|gl|bw|1|bridge|3
 Marširajući mostić|Marching bridge|gl|bw|2|bridge|3
-Donkey kick|Donkey kick|gl|bw|1|bridge|3
-Fire hydrant|Fire hydrant|gl|bw|1|bridge|3
+Donkey kick|Donkey kick|gl|bw|1|kick|3
+Fire hydrant|Fire hydrant|gl|bw|1|kick|3
 Frog pump|Frog pump|gl|bw|1|bridge|3
 Bočno podizanje noge|Side-lying leg raise|gl|bw|1|bridge|3
 Bočno podizanje noge stojeći|Standing leg abduction|gl|bw|1|step|3
 Clamshell s trakom|Banded clamshell|gl|bd|1|bridge|3
 Mostić s elastičnom trakom|Banded glute bridge|gl|bd|1|bridge|3
-Fire hydrant s trakom|Banded fire hydrant|gl|bd|2|bridge|3
-Kickback s trakom|Banded kickback|gl|bd|1|bridge|3
+Fire hydrant s trakom|Banded fire hydrant|gl|bd|2|kick|3
+Kickback s trakom|Banded kickback|gl|bd|1|kick|3
 Hip thrust na klupi|Bench hip thrust|gl|bn|2|bridge|4
 Hip thrust s bučicom|Dumbbell hip thrust|gl|db|2|bridge|4
 Hip thrust sa šipkom|Barbell hip thrust|gl|bb|3|bridge|5
 Sumo mrtvo dizanje|Sumo deadlift|gl|bb|3|hinge|5
-Kablovski kickback|Cable glute kickback|gl|mc|2|bridge|3
+Kablovski kickback|Cable glute kickback|gl|mc|2|kick|3
 Abdukcija na spravi|Hip abduction machine|gl|mc|1|squat|3
 Kettlebell zamah|Kettlebell swing|gl|kb|2|hinge|4
 Dobro jutro (good morning)|Good morning|gl|bw|1|hinge|3
@@ -65,27 +65,27 @@ Veslanje bučicom jednom rukom|Single-arm dumbbell row|bk|db|1|row|4
 Veslanje bučicama u pretklonu|Bent-over dumbbell row|bk|db|2|row|4
 Obrnuti fly s bučicama|Dumbbell reverse fly|bk|db|2|row|3
 Veslanje kettlebellom|Kettlebell row|bk|kb|1|row|4
-Veslanje na kablu|Seated cable row|bk|mc|1|row|4
-Lat pulldown|Lat pulldown|bk|mc|1|row|4
-Lat pulldown uskim hvatom|Close-grip lat pulldown|bk|mc|2|row|4
+Veslanje na kablu|Seated cable row|bk|mc|1|seatrow|4
+Lat pulldown|Lat pulldown|bk|mc|1|pulldown|4
+Lat pulldown uskim hvatom|Close-grip lat pulldown|bk|mc|2|pulldown|4
 Face pull na kablu|Cable face pull|bk|mc|2|row|3
 Veslanje sa šipkom|Barbell row|bk|bb|3|row|5
 Povlačenje elastične trake|Banded pull-apart|bk|bd|1|row|2
 Veslanje s elastičnom trakom|Banded row|bk|bd|1|row|3
 Pull-up uz elastičnu traku|Band-assisted pull-up|bk|bd|3|row|4
-Superman|Superman|bk|bw|1|bridge|2
-Plivanje na trbuhu|Prone swimmers|bk|bw|1|bridge|2
-Ptica-pas|Bird dog|bk|bw|1|plank|3
+Superman|Superman|bk|bw|1|prone|2
+Plivanje na trbuhu|Prone swimmers|bk|bw|1|prone|2
+Ptica-pas|Bird dog|bk|bw|1|kick|3
 Y-T-W podizanja|Y-T-W raises|bk|bw|2|row|3
 Veslanje ručnikom|Towel row|bk|bw|1|row|3
-Hiperekstenzija|Back extension|bk|bn|1|bridge|3
+Hiperekstenzija|Back extension|bk|bn|1|prone|3
 Pull-up|Pull-up|bk|bw|3|row|4
-Sklek na koljenima|Knee push-up|ch|bw|1|push|3
+Sklek na koljenima|Knee push-up|ch|bw|1|kneepush|3
 Sklek|Push-up|ch|bw|2|push|3
 Široki sklek|Wide push-up|ch|bw|2|push|3
 Sklek uskim hvatom|Close-grip push-up|ch|bw|2|push|3
 Dijamant sklek|Diamond push-up|ch|bw|3|push|3
-Sklek s rukama na klupi|Incline push-up|ch|bn|1|push|3
+Sklek s rukama na klupi|Incline push-up|ch|bn|1|incline|3
 Sklek s nogama na klupi|Decline push-up|ch|bn|3|push|3
 Sklek s pauzom|Paused push-up|ch|bw|3|push|3
 Sklek s dodirom ramena|Push-up shoulder tap|ch|bw|3|push|3
@@ -134,17 +134,17 @@ Bočni plank|Side plank|co|bw|1|plank|2
 Bočni plank s podizanjem kuka|Side plank hip dips|co|bw|2|plank|2
 Plank jack|Plank jack|co|bw|2|plank|3
 Plank s podizanjem noge|Plank leg lift|co|bw|2|plank|3
-Mrtva buba|Dead bug|co|bw|1|crunch|3
+Mrtva buba|Dead bug|co|bw|1|deadbug|3
 Bicikl trbušnjaci|Bicycle crunch|co|bw|1|crunch|3
 Trbušnjaci|Crunch|co|bw|1|crunch|3
-Obrnuti trbušnjaci|Reverse crunch|co|bw|2|crunch|3
-Podizanje nogu ležeći|Lying leg raise|co|bw|2|crunch|3
+Obrnuti trbušnjaci|Reverse crunch|co|bw|2|legraise|3
+Podizanje nogu ležeći|Lying leg raise|co|bw|2|legraise|3
 Ruski zaokret|Russian twist|co|bw|2|crunch|3
 Hollow hold|Hollow hold|co|bw|3|crunch|2
 V-up|V-up|co|bw|3|crunch|3
 Penjač (mountain climbers)|Mountain climbers|co|bw|2|climb|3
 Dodir peta|Heel taps|co|bw|1|crunch|3
-Škare nogama|Flutter kicks|co|bw|2|crunch|2
+Škare nogama|Flutter kicks|co|bw|2|legraise|2
 Plank na fitball loptu|Stability ball plank|co|fb|2|plank|2
 Kotrljanje lopte nogama|Stability ball pike|co|fb|3|plank|3
 Trbušnjak na fitball lopti|Stability ball crunch|co|fb|2|crunch|3
@@ -188,11 +188,11 @@ Squat to press|Squat to press|fb|db|2|squat|4
 Ravnoteža na jednoj nozi|Single-leg balance|fb|bw|1|step|2
 Kružni trening cijelog tijela|Full-body circuit|fb|bw|2|jump|15
 Wall ball|Wall ball|fb|fb|2|squat|4
-Mačka–krava|Cat-cow|mo|bw|1|stretch|2
-Pas licem prema dolje|Downward dog|mo|bw|1|stretch|2
-Položaj djeteta|Child's pose|mo|bw|1|stretch|2
-Ratnica II|Warrior II|mo|bw|1|stretch|2
-Ratnica I|Warrior I|mo|bw|1|stretch|2
+Mačka–krava|Cat-cow|mo|bw|1|catcow|2
+Pas licem prema dolje|Downward dog|mo|bw|1|downdog|2
+Položaj djeteta|Child's pose|mo|bw|1|child|2
+Ratnica II|Warrior II|mo|bw|1|warrior|2
+Ratnica I|Warrior I|mo|bw|1|warrior|2
 Golub (pigeon pose)|Pigeon pose|mo|bw|2|stretch|3
 Kobra|Cobra pose|mo|bw|1|stretch|2
 Istezanje kvadricepsa|Quad stretch|mo|bw|1|stretch|2
@@ -213,25 +213,25 @@ Kruženje gležnjevima|Ankle circles|mo|bw|1|stretch|1
 Dubok čučanj kao istezanje|Deep squat hold|mo|bw|1|stretch|2
 Istezanje s ručnikom|Towel stretch|mo|bw|1|stretch|2
 Istezanje na fitball lopti|Stability ball back stretch|mo|fb|1|stretch|2
-Disanje 4-7-8|4-7-8 breathing|mo|bw|1|stretch|3
-Kutna vježba disanja (box breathing)|Box breathing|mo|bw|1|stretch|3
-Progresivno opuštanje mišića|Progressive muscle relaxation|mo|bw|1|stretch|8
-Savasana|Savasana|mo|bw|1|stretch|5
+Disanje 4-7-8|4-7-8 breathing|mo|bw|1|rest|3
+Kutna vježba disanja (box breathing)|Box breathing|mo|bw|1|rest|3
+Progresivno opuštanje mišića|Progressive muscle relaxation|mo|bw|1|rest|8
+Savasana|Savasana|mo|bw|1|rest|5
 Sunčev pozdrav|Sun salutation|mo|bw|1|stretch|6
 Foam roller – leđa|Foam roller – back|mo|bw|1|stretch|3
 Foam roller – bedra|Foam roller – thighs|mo|bw|1|stretch|3
 Veslanje bučicama na klupi|Chest-supported row|bk|db|2|row|4
 Potisak nogama jednom nogom|Single-leg leg press|lg|mc|2|squat|4
 Iskorak u smith stroju|Smith machine lunge|lg|mc|2|lunge|5
-Zamah nogom unatrag na spravi|Machine glute kickback|gl|mc|1|bridge|3
-Bočno podizanje na koljenima|Kneeling side raise|gl|bw|1|bridge|3
+Zamah nogom unatrag na spravi|Machine glute kickback|gl|mc|1|kick|3
+Bočno podizanje na koljenima|Kneeling side raise|gl|bw|1|kick|3
 Pregib trakom na jednoj ruci|Single-arm banded curl|ar|bd|1|curl|3
 Sklek s podizanjem noge|Push-up with leg lift|ch|bw|3|push|3
 Potisak jednom rukom bučicom|Single-arm dumbbell press|sh|db|2|press|4
 Zaklon na zidu (wall angels)|Wall angels|sh|bw|1|press|2
 Leđni mostić s trakom|Banded superman pull|bk|bd|2|bridge|3
-Ravnoteža u psu i ptici s trakom|Banded bird dog|co|bd|2|plank|3
-Ptica-pas s laktom i koljenom|Bird dog crunch|co|bw|2|plank|3
+Ravnoteža u psu i ptici s trakom|Banded bird dog|co|bd|2|kick|3
+Ptica-pas s laktom i koljenom|Bird dog crunch|co|bw|2|kick|3
 Čučanj s podizanjem ruku|Squat with overhead reach|lg|bw|1|squat|3
 Iskorak s okretom trupa|Lunge with twist|lg|bw|2|lunge|3
 Hodanje na petama|Heel walk|lg|bw|1|walk|2
@@ -247,6 +247,19 @@ const LEQ={bw:['Bez opreme','No equipment'],db:['Bučice','Dumbbells'],bd:['Elas
 const LLV=[null,['Početnica','Beginner'],['Srednja','Intermediate'],['Napredna','Advanced']];
 const LDUR=[null,['do 2 min','up to 2 min'],['3–5 min','3–5 min'],['6+ min','6+ min']];
 const LCUE={
+prone:['Leži na trbuhu, istovremeno lagano podigni ruke, prsa i noge, pogled prema podu. Zadrži sekundu i polako spusti.','Lie face down, lift arms, chest and legs slightly at the same time, eyes toward the floor. Hold a second and lower slowly.'],
+kick:['Na sve četiri: ruke ispod ramena, koljena ispod kukova, leđa ravna. Potisni petu prema stropu i ne izvijaj donji dio leđa.','On all fours: hands under shoulders, knees under hips, back flat. Press the heel toward the ceiling and do not arch the lower back.'],
+legraise:['Leđa pritisnuta uz pod, noge ravne, polako ih podigni do okomice i spusti bez da se donji dio leđa odvoji.','Back pressed into the floor, legs straight, raise them slowly to vertical and lower without the lower back lifting.'],
+deadbug:['Ruke prema stropu, koljena iznad kukova. Spuštaj suprotnu ruku i nogu uz pod, donji dio leđa ostaje na podu.','Arms toward the ceiling, knees above hips. Lower the opposite arm and leg toward the floor, keeping the lower back on the floor.'],
+catcow:['Na sve četiri, polako izmjenjuj izvijanje leđa prema gore (mačka) i prema dolje (krava) uz dah.','On all fours, slowly alternate rounding the back up (cat) and arching down (cow) with your breath.'],
+downdog:['Dlanovi i stopala na podu, kukovi prema stropu u obliku obrnutog slova V, ruke i leđa u liniji. Peti teže prema podu.','Palms and feet on the floor, hips toward the ceiling in an inverted V, arms and back in one line. Heels reach toward the floor.'],
+child:['Sjedni na pete, spusti trup naprijed i opusti ruke ispred sebe. Diši duboko i opusti leđa.','Sit back on your heels, fold forward and rest your arms in front. Breathe deeply and relax your back.'],
+rest:['Lezi na leđa, ruke uz tijelo, dlanovi gore. Zatvori oči i opusti svaki mišić uz sporo disanje.','Lie on your back, arms by your sides, palms up. Close your eyes and relax every muscle with slow breathing.'],
+warrior:['Široki iskorak, prednje koljeno iznad gležnja, stražnja noga ravna, ruke ispružene. Ramena opuštena, pogled naprijed.','Wide lunge, front knee above the ankle, back leg straight, arms extended. Shoulders relaxed, eyes forward.'],
+kneepush:['Koljena na podu, tijelo u liniji od koljena do glave. Spusti prsa prema podu i potisni natrag.','Knees on the floor, body in one line from knees to head. Lower the chest toward the floor and press back.'],
+incline:['Ruke na klupi ili stabilnoj podlozi, tijelo u ravnoj liniji. Spusti prsa prema rubu klupe i potisni natrag.','Hands on a bench or stable surface, body in a straight line. Lower the chest toward the edge and press back.'],
+pulldown:['Ramena dolje i unatrag, povuci laktove prema rebrima i spusti šipku do visine brade. Vrati polako.','Shoulders down and back, pull the elbows toward the ribs and bring the bar to chin height. Return slowly.'],
+seatrow:['Sjedi uspravno, povuci ručku prema trbuhu stišćući lopatice, laktovi uz tijelo. Polako vrati.','Sit tall, pull the handle toward your abdomen squeezing the shoulder blades, elbows by your sides. Return slowly.'],
 squat:['Stopala u širini ramena, težina na petama, koljena prate smjer prstiju. Spusti kukove unatrag i dolje, leđa ravna, prsa gore.','Feet shoulder-width, weight on the heels, knees track over the toes. Sit hips back and down, back straight, chest up.'],
 lunge:['Napravi korak i spusti se tako da su oba koljena oko 90°, prednje koljeno iznad gležnja, trup uspravan. Odgurni se petom prednje noge.','Step and lower until both knees are about 90°, front knee over the ankle, torso upright. Push through the front heel.'],
 push:['Tijelo u ravnoj liniji od glave do pete, laktovi oko 45° od trupa. Spusti prsa prema podu i potisni natrag. Lakše: na koljenima ili uz klupu.','Body in a straight line from head to heels, elbows about 45° from the torso. Lower the chest toward the floor and press back. Easier: on knees or hands on a bench.'],
@@ -264,7 +277,7 @@ step:['Cijelo stopalo na podlozi, odgurni se petom, kontrolirano spusti, trup us
 hinge:['Kukovi unatrag, leđa ravna, koljena blago savijena. Osjeti istezanje stražnje lože i ustani stežući gluteuse.','Hips back, back flat, knees slightly bent. Feel the hamstrings stretch and stand up squeezing the glutes.'],
 stretch:['Polako i bez trzaja, zadrži 20–30 s i diši duboko. Ne smije boljeti – samo ugodno istezanje.','Slow and without bouncing, hold 20–30 s and breathe deeply. It should not hurt – only a comfortable stretch.']
 };
-const LPOSE={squat:'squat',lunge:'lunge',push:'push',plank:'plank',bridge:'bridge',crunch:'crunch',climb:'climb',row:'row',press:'press',curl:'curl',run:'run',walk:'walk',jump:'jump',step:'step',hinge:'hinge',stretch:'breathe'};
+const LPOSE={prone:'prone',kick:'kick',legraise:'legraise',deadbug:'deadbug',catcow:'catcow',downdog:'downdog',child:'child',rest:'rest',warrior:'warrior',kneepush:'kneepush',incline:'incline',pulldown:'pulldown',seatrow:'seatrow',squat:'squat',lunge:'lunge',push:'push',plank:'plank',bridge:'bridge',crunch:'crunch',climb:'climb',row:'row',press:'press',curl:'curl',run:'run',walk:'walk',jump:'jump',step:'step',hinge:'hinge',stretch:'breathe'};
 let lb={q:'',m:'',e:'',l:0,t:0,fav:false,open:null,n:30};
 function lname(x){return ST.lang==='hr'?x.hr:x.en}
 function lbSet(k,v){lb[k]=(lb[k]===v&&k!=='q')?(typeof v==='number'?0:''):v;lb.n=30;lb.open=null;render()}
@@ -305,9 +318,9 @@ function libPage(){
  const f=!!(lb.m||lb.e||lb.l||lb.t||lb.fav||lb.q);
  return `<div class="pad">${back}<h2 style="margin:12px 0">📚 ${L('Biblioteka vježbi','Exercise library')}</h2>
  <input id="lbq" type="search" placeholder="${L('🔍 Traži vježbu','🔍 Search exercise')}" value="${lb.q.replace(/"/g,'&quot;')}" oninput="lbQ(this.value)">
- <p class="mut" style="margin:10px 0 4px">${L('Mišićna skupina','Muscle group')}</p><div class="chips">${Object.keys(LM).map(k=>chip('m',k,LM[k][0]+' '+L(LM[k][1],LM[k][2]),lb.m===k)).join('')}</div>
- <p class="mut" style="margin:4px 0">${L('Oprema','Equipment')}</p><div class="chips">${Object.keys(LEQ).map(k=>chip('e',k,L(LEQ[k][0],LEQ[k][1]),lb.e===k)).join('')}</div>
- <p class="mut" style="margin:4px 0">${L('Razina i trajanje','Level and duration')}</p><div class="chips">${[1,2,3].map(k=>chip('l',k,L(LLV[k][0],LLV[k][1]),lb.l===k)).join('')}${[1,2,3].map(k=>chip('t',k,'⏱ '+L(LDUR[k][0],LDUR[k][1]),lb.t===k)).join('')}<div class="chip ${lb.fav?'on':''}" onclick="lbFav()">⭐ ${L('Omiljene','Favourites')}</div></div>
+ <p class="mut" style="margin:10px 0 4px">${L('Mišićna skupina','Muscle group')}</p><div class="chips" style="flex-wrap:wrap;overflow:visible">${Object.keys(LM).map(k=>chip('m',k,LM[k][0]+' '+L(LM[k][1],LM[k][2]),lb.m===k)).join('')}</div>
+ <p class="mut" style="margin:4px 0">${L('Oprema','Equipment')}</p><div class="chips" style="flex-wrap:wrap;overflow:visible">${Object.keys(LEQ).map(k=>chip('e',k,L(LEQ[k][0],LEQ[k][1]),lb.e===k)).join('')}</div>
+ <p class="mut" style="margin:4px 0">${L('Razina i trajanje','Level and duration')}</p><div class="chips" style="flex-wrap:wrap;overflow:visible">${[1,2,3].map(k=>chip('l',k,L(LLV[k][0],LLV[k][1]),lb.l===k)).join('')}${[1,2,3].map(k=>chip('t',k,'⏱ '+L(LDUR[k][0],LDUR[k][1]),lb.t===k)).join('')}<div class="chip ${lb.fav?'on':''}" onclick="lbFav()">⭐ ${L('Omiljene','Favourites')}</div></div>
  <div class="flex" style="justify-content:space-between;align-items:center;margin:8px 0"><span class="mut"><b>${list.length}</b> ${L('od','of')} ${LIB.length} ${L('vježbi','exercises')}</span>${f?`<span class="chip" onclick="lbReset()">✕ ${L('Očisti filtre','Clear filters')}</span>`:''}</div>
  ${show.map(libCard).join('')||`<div class="card"><p class="mut">${L('Nema rezultata. Probaj ukloniti neki filtar.','No results. Try removing a filter.')}</p></div>`}
  ${list.length>show.length?`<button class="btn sec" onclick="lbMore()">${L('Prikaži još','Show more')} (${list.length-show.length})</button>`:''}
