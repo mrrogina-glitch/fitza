@@ -378,7 +378,10 @@ function remSet(on){S.rem=S.rem||{on:false,t:'18:00',last:''};S.rem.on=!!on;save
 function remTime(v){S.rem=S.rem||{on:true,t:'18:00',last:''};if(/^\d\d:\d\d$/.test(v)){S.rem.t=v;save();render()}}
 function remPerm(){try{Notification.requestPermission().then(()=>render())}catch(e){notify(L('Preglednik ne podržava obavijesti','Your browser does not support notifications'))}}
 function remNotify(){
- try{if(typeof Notification==='undefined'||Notification.permission!=='granted')return false;const w=buildWeek()[todayIdx()];new Notification('Fitža 💪',{body:w&&w.t?L('Danas je dan treninga: ','Workout day today: ')+w.w.n:L('Vrijeme je za malo kretanja!','Time to move a little!')});return true}catch(e){return false}
+ try{if(typeof Notification==='undefined'||Notification.permission!=='granted')return false;const w=buildWeek()[todayIdx()],body=w&&w.t?L('Danas je dan treninga: ','Workout day today: ')+w.w.n:L('Vrijeme je za malo kretanja!','Time to move a little!');
+  const o={body,icon:'icon-192.png',tag:'fitza-day'};
+  if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration){navigator.serviceWorker.getRegistration().then(r=>{if(r&&r.showNotification)r.showNotification('Fitža 💪',o);else new Notification('Fitža 💪',o)}).catch(()=>{try{new Notification('Fitža 💪',o)}catch(e){}});return true}
+  new Notification('Fitža 💪',o);return true}catch(e){return false}
 }
 function remTest(){if(!remNotify())notify(L('Prvo dopusti obavijesti u pregledniku','Please allow notifications in your browser first'))}
 function remTick(){
