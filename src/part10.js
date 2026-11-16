@@ -36,11 +36,12 @@ async function loginDo(){
  if(!a){e.textContent=L('Račun nije pronađen na ovom uređaju.','Account not found on this device.');return}
  if(a.ph){const h=await _hash(pass,a.salt);if(h!==a.ph){e.textContent=L('Pogrešna lozinka.','Wrong password.');return}}
  const k=($('#lrem')&&!$('#lrem').checked)?false:true;
- S=a;S.remember=k;loc=S.pref||'Kod kuće';const all=_accs();delete all[mail];_setAccs(all);save();_session(true);_persist();lg.open=false;tab='home';render();
+ S=a;S.remember=k;loc=S.pref||'Kod kuće';const all=_accs();delete all[mail];_setAccs(all);if(S.dev&&$('#lsync'))S.dev.onLogin=$('#lsync').checked?1:0;save();_session(true);_persist();lg.open=false;tab='home';render();loginSync(true);
 }
 function loginForm(){
  const ac=Object.values(_accs()).filter(x=>x.mail);
  return `<div class="card"><h3>🔑 ${L('Prijava','Sign in')}</h3><label>E-mail</label><input id="lmail" type="email" value="${ac.length===1?_eh(ac[0].mail):''}" autocomplete="email"><label>${L('Lozinka','Password')}</label><input id="lpass" type="password" autocomplete="current-password">
+ ${ac.some(x=>x.dev&&(x.dev.phone&&x.dev.phone.on||x.dev.watch&&x.dev.watch.on))?`<label style="display:flex;gap:10px;align-items:center;color:var(--ink);font-size:14px;margin-top:8px"><input id="lsync" type="checkbox" checked style="width:auto"> 🔄 ${L('Automatski sinkroniziraj mobitel i sat nakon prijave','Automatically sync phone and watch after sign-in')}</label>`:''}
  <label style="display:flex;gap:10px;align-items:center;color:var(--ink);font-size:14px"><input id="lrem" type="checkbox" checked style="width:auto"> ${L('Ostani prijavljena na ovom uređaju','Keep me signed in on this device')}</label>
  <p class="mut" id="lerr" style="color:#c92a2a;margin:8px 0"></p><button class="btn" onclick="loginDo()">${L('Prijavi se','Sign in')}</button>
  <button class="link" onclick="loginOpen(false)">← ${L('Natrag','Back')}</button></div>`;
@@ -73,7 +74,7 @@ function accImport(inp){
  r.onload=()=>{
   try{
    const o=JSON.parse(r.result);if(!o||o.app!=='fitza'||!o.S||typeof o.S!=='object'||!o.S.name||!o.S.days)throw 0;
-   S=o.S;S.remember=true;loc=S.pref||'Kod kuće';save();_session(true);_persist();tab='home';render();notify(L('Račun vraćen ✓','Account restored ✓'));
+   S=o.S;S.remember=true;loc=S.pref||'Kod kuće';save();_session(true);_persist();tab='home';render();notify(L('Račun vraćen ✓','Account restored ✓'));setTimeout(()=>loginSync(true),1900);
   }catch(e){notify(L('Datoteka nije ispravna sigurnosna kopija','Not a valid backup file'))}
  };r.readAsText(f);inp.value='';
 }
@@ -85,3 +86,25 @@ function accTail(){
  <button class="btn sec" onclick="accLogout()">🚪 ${L('Odjava (podaci ostaju na uređaju)','Sign out (data stays on this device)')}</button>
  <button class="link" style="color:#c92a2a;margin-top:8px" onclick="accDelete()">🗑️ ${L('Trajno obriši račun i podatke','Permanently delete account and data')}</button>`;
 }
+
+/* ---- automatska sinkronizacija uređaja pri prijavi ---- */
+function devsOn(){return !!(S&&S.dev&&((S.dev.phone&&S.dev.phone.on)||(S.dev.watch&&S.dev.watch.on)))}
+function loginSync(force){
+ try{
+  if(!devsOn()||S.dev.onLogin===0)return;
+  const now=Date.now();if(!force&&S.dev.lastAuto&&now-S.dev.lastAuto<30*60000)return;
+  const names=[];['phone','watch'].forEach(k=>{if(S.dev[k]&&S.dev[k].on){syncNow(k);names.push(DEVS[k][1])}});
+  S.dev.lastAuto=now;save();
+  setTimeout(()=>notify('🔄 '+L('Automatski sinkronizirano: ','Automatically synced: ')+names.join(', ')),400);
+ }catch(e){}
+}
+function togLoginSync(){devInit();S.dev.onLogin=S.dev.onLogin===0?1:0;save();render()}
+(function(){
+ const sp=syncPage;
+ syncPage=function(){
+  const on=!S.dev||S.dev.onLogin!==0;
+  return sp().replace('<div class="card"><h3>Današnji podaci</h3>',`<div class="card"><div class="flex"><span style="flex:1">🔄 <b>${L('Sinkroniziraj pri svakoj prijavi','Sync on every sign-in')}</b><br><span class="mut" style="font-size:12px">${L('Kad se prijaviš ili otvoriš aplikaciju, automatski se osvježe podaci s već povezanih uređaja (mobitel, sat). Radi samo ako je uređaj već povezan.','When you sign in or open the app, data from the devices you already connected (phone, watch) refreshes automatically. Works only if a device is already connected.')}</span></div><div class="chip ${on?'on':''}" onclick="togLoginSync()">${on?L('Uključeno','On'):L('Isključeno','Off')}</div></div></div><div class="card"><h3>Današnji podaci</h3>`);
+ };
+ // pri otvaranju aplikacije u novoj sesiji preglednika
+ try{if(S&&!sessionStorage.getItem('fz_sy')){sessionStorage.setItem('fz_sy','1');if(devsOn())setTimeout(()=>loginSync(false),900)}}catch(e){}
+})();
