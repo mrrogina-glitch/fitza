@@ -474,7 +474,7 @@ function profile(){
  const gT={'Gubitak kilograma':'Weight loss','Jačanje i tonus':'Strength and toning','Opuštanje / stres':'Relaxation / stress','Kondicija':'Fitness'},lT={Početnica:'Beginner',Srednja:'Intermediate',Napredna:'Advanced'},pT={'Kod kuće':'At home','U teretani':'At the gym','Na otvorenom':'Outdoors'};
  const head=`<div class="card"><h3>${S.name}</h3><p class="mut">${S.demo?L('Demo način – registracija preskočena','Demo mode – registration skipped'):S.mail}</p>${S.demo?`<button class="btn sm" style="margin-top:10px" onclick="S=null;render()">${L('Registriraj se','Sign up')}</button>`:''}</div>`;
  const tail=`<div class="card"><h3>${L('Povezani uređaji','Connected devices')}</h3><p class="mut">${L('Mobitel (Apple Zdravlje / Google Fit) i pametni sat – u punoj verziji aplikacije, ovdje simulacija.','Phone (Apple Health / Google Fit) and smartwatch – in the full app, simulated here.')}</p></div>
- <button class="btn sec" onclick="if(window.__c){S=null;mem={};store.set('fitza',null);tab='home';render()}else{window.__c=1;notify(L('Dodirni opet za odjavu i brisanje','Tap again to sign out and delete data'))}">${L('Odjava i brisanje podataka','Sign out and delete data')}</button>`;
+ ${typeof accTail==='function'?accTail():''}`;
  if(pe)return `<div class="pad"><h2>${L('Uredi profil','Edit profile')}</h2>${head}
  <div class="card">${S.demo?'':`<label>${L('E-pošta','Email')}</label><input id="pe_m" type="email" value="${(S.mail||'').replace(/"/g,'&quot;')}">`}<label>${L('Ime','Name')}</label><input id="pe_n" value="${(S.name||'').replace(/"/g,'&quot;')}" maxlength="40">
  <label>${L('Dob','Age')}</label><input id="pe_a" type="number" inputmode="numeric" value="${S.age}">
